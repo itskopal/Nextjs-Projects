@@ -2,7 +2,7 @@
 
 // export const connectDb = async () => {
 //   await mongoose.connect(
-//     "mongodb+srv://itskopal021:codewithkopal@cluster0.snuziuf.mongodb.net/blog_app"
+//     process.env.MONGODB_URI
 //   );
 //   console.log("Db connected.");
 // };
@@ -17,7 +17,7 @@ export const connectDb = async () => {
   }
 
   try {
-    await mongoose.connect("mongodb+srv://itskopal021:codewithkopal@cluster0.snuziuf.mongodb.net/blog_app");
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log("DB connected.");
   } catch (error) {
     console.error("DB connection error:", error);
