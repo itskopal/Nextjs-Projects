@@ -42,16 +42,31 @@ LoadDb();
 //   return NextResponse.json({ success: true, msg: "Blog Added" });
 // }
 
+
 export async function POST(request) {
   try {
-
     const formData = await request.formData();
-    const timestamp = Date.now();
 
     const image = formData.get("image");
+    if (!image || typeof image.arrayBuffer !== "function") {
+      return NextResponse.json(
+        { success: false, msg: "No image uploaded" },
+        { status: 400 }
+      );
+    }
+
+    const timestamp = Date.now();
     const imageByteData = await image.arrayBuffer();
     const buffer = Buffer.from(imageByteData);
-    const path = `./public/${timestamp}_${image.name}`;
+
+    // Ensure public folder exists
+    const fs = require("fs");
+    const publicFolder = "./public";
+    if (!fs.existsSync(publicFolder)) {
+      fs.mkdirSync(publicFolder);
+    }
+
+    const path = `${publicFolder}/${timestamp}_${image.name}`;
     await writeFile(path, buffer);
     const imgUrl = `/${timestamp}_${image.name}`;
 
@@ -69,6 +84,10 @@ export async function POST(request) {
     return NextResponse.json({ success: true, msg: "Blog Added" });
   } catch (err) {
     console.error("POST error:", err);
-    return NextResponse.json({ success: false, msg: "Error adding blog" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, msg: "Error adding blog" },
+      { status: 500 }
+    );
   }
 }
+
