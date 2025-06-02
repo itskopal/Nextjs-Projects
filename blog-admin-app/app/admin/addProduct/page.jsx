@@ -35,6 +35,14 @@ const page = () => {
     const response = await axios.post("/api/blog", formData);
     if (response.data.success) {
       toast.success(response.data.msg);
+      setImage(false);
+      setData({
+        title: "",
+        description: "",
+        category: "Startup",
+        author: "Alex Benett",
+        author_img: "/author_img.png",
+      });
     } else {
       toast.error("Error");
     }
@@ -101,7 +109,10 @@ const page = () => {
         </select>
 
         <br />
-        <button type="submit" className="mt-8 w-40 h-12 bg-black text-white cursor-pointer">
+        <button
+          type="submit"
+          className="mt-8 w-40 h-12 bg-black text-white cursor-pointer"
+        >
           Add
         </button>
       </form>

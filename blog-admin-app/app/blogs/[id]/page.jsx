@@ -1,6 +1,7 @@
 "use client";
 import { assets, blog_data } from "@/assets/assets";
 import Footer from "@/components/Footer";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -8,14 +9,23 @@ import React, { useEffect, useState } from "react";
 const page = ({ params }) => {
   const [data, setData] = useState(null);
 
-  const fetchBlogData = () => {
-    for (let i = 0; i < blog_data.length; i++) {
-      if (Number(params.id) === blog_data[i].id) {
-        setData(blog_data[i]);
-        //console.log(blog_data[i]);
-        break;
-      }
-    }
+  // const fetchBlogData = () => {
+  //   for (let i = 0; i < blog_data.length; i++) {
+  //     if (Number(params.id) === blog_data[i].id) {
+  //       setData(blog_data[i]);
+  //       //console.log(blog_data[i]);
+  //       break;
+  //     }
+  //   }
+  // };
+
+  const fetchBlogData = async () => {
+    const response = await axios.get("/api/blog", {
+      params: {
+        id: params.id,
+      },
+    });
+    setData(response.data);
   };
 
   useEffect(() => {
@@ -26,13 +36,13 @@ const page = ({ params }) => {
     <>
       <div className="bg-gray-200 py-5 px-5 md:px-12 lg:px-28">
         <div className="flex justify-between items-center">
-          <Link href='/'>
-          <Image
-            src={assets.logo}
-            width={180}
-            alt="logo"
-            className="w-[130px] sm:w-auto"
-          />
+          <Link href="/">
+            <Image
+              src={assets.logo}
+              width={180}
+              alt="logo"
+              className="w-[130px] sm:w-auto"
+            />
           </Link>
           <button
             className="flex items-center gap-2 font-medium py-1 px-3 sm:py-3 sm:px-6
@@ -104,9 +114,7 @@ const page = ({ params }) => {
           aliquid amet veniam eius deleniti tenetur.
         </p>
 
-        <h3 className="my-5 text-[18px] font-semibold">
-          Step 3: Goal Setting
-        </h3>
+        <h3 className="my-5 text-[18px] font-semibold">Step 3: Goal Setting</h3>
         <p className="my-3">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id sed
           aperiam, alias aliquam pariatur aliquid amet veniam eius deleniti
@@ -119,28 +127,27 @@ const page = ({ params }) => {
           architecto repellat dignissimos nihil. Corporis
         </p>
 
-        <h3 className="my-5 text-[18px] font-semibold">
-           Conclusion
-        </h3>
+        <h3 className="my-5 text-[18px] font-semibold">Conclusion</h3>
         <p className="my-3">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id sed
           aperiam, alias aliquam pariatur aliquid amet veniam eius deleniti
           tenetur aut saepe expedita optio architecto repellat dignissimos
-          nihil. Corporis, repellat?  <br />
-           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id sed
+          nihil. Corporis, repellat? <br />
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id sed
           aperiam, alias aliquam niti tenetur aut saepe expedita optio
           architecto repellat dignissimos nihil. Corporis
         </p>
 
         <div className="my-14">
-          <p className="text-black font-semibold my-4">Share this article on social media</p>
+          <p className="text-black font-semibold my-4">
+            Share this article on social media
+          </p>
           <div className="flex">
             <Image src={assets.facebook_icon} width={50} alt="fb" />
             <Image src={assets.twitter_icon} width={50} alt="fb" />
             <Image src={assets.googleplus_icon} width={50} alt="fb" />
           </div>
         </div>
-       
       </div>
 
       <Footer />

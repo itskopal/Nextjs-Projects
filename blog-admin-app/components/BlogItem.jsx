@@ -6,7 +6,7 @@ import React from "react";
 const BlogItem = ({ item }) => {
   return (
     <div className="max-w-[330px] sm:max-w-[300px] bg-white border border-black hover:shadow-[-7px_7px_0px_#000000]">
-      <Link href={`/blogs/${item.id}`}>
+      <Link href={`/blogs/${item._id}`}>
         <Image
           src={item.image}
           alt="img"
@@ -22,10 +22,10 @@ const BlogItem = ({ item }) => {
         <h5 className="mb-2 text-lg font-medium tracking-tight text-gray-900">
           {item.title}
         </h5>
-        <p className="mb-3 text-sm tracking-tight text-gray-700">
+        <p className="mb-3 text-sm tracking-tight text-gray-700 truncate-3-lines">
           {item.description}
         </p>
-        <Link href={`/blogs/${item.id}`} className="inline-flex items-center py-2 font-semibold text-center">
+        <Link href={`/blogs/${item._id}`} className="inline-flex items-center py-2 font-semibold text-center">
           Readmore
           <Image src={assets.arrow} alt="arrow" width={12} className="ml-2" />
         </Link>
