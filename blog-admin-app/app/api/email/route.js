@@ -8,7 +8,6 @@ const LoadDb = async () => {
 };
 LoadDb();
 
-
 //Api endpoint for email
 export async function POST(request) {
   try {
@@ -23,23 +22,19 @@ export async function POST(request) {
     return NextResponse.json({ success: true, msg: "Email Subscribed!" });
   } catch (err) {
     console.error("POST error:", err);
-    return NextResponse.json(
-      { success: false, msg: "Error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ success: false, msg: "Error" }, { status: 500 });
   }
 }
 
+//Api endpoint for get emails
+export async function GET(request) {
+  const emails = await EmailModel.find({});
+  return NextResponse.json({ emails });
+}
 
-//Api endpoint for get blogs
-// export async function GET(request) {
-//   const blogId = request.nextUrl.searchParams.get("id");
-//   if (blogId) {
-//     const blog = await BlogModel.findById(blogId);
-//     return NextResponse.json(blog);
-//   } else {
-//     const blogs = await BlogModel.find({});
-//     return NextResponse.json({ blogs });
-//   }
-// }
-
+//Api endpoint for delete email
+export async function DELETE(request) {
+  const id = request.nextUrl.searchParams.get("id");
+  await EmailModel.findByIdAndDelete(id);
+  return NextResponse.json({ success: true, msg: "Email Deleted!!" });
+}

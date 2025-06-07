@@ -77,66 +77,13 @@ const page = ({ params }) => {
           alt="img"
           className="border-4 border-white"
         />
-        <h1 className="my-8 text-[26px] font-semibold">Introduction:</h1>
-        <p>{data.description}</p>
-        <h3 className="my-5 text-[18px] font-semibold">
-          Step 1: Self-Reflection and Goal Setting
-        </h3>
-        <p className="my-3">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id sed
-          aperiam, alias aliquam pariatur aliquid amet veniam eius deleniti
-          tenetur aut saepe expedita optio architecto repellat dignissimos
-          nihil. Corporis, repellat?
-        </p>
-        <p className="my-3">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id sed
-          aperiam, alias aliquam pariatur aliquid amet veniam eius deleniti
-          tenetur aut saepe expedita optio architecto repellat dignissimos
-          nihil. Corporis, repellat? Id sed aperiam, alias aliquam pariatur
-          aliquid amet veniam eius deleniti tenetur aut saepe expedita optio
-          architecto repellat dignissimos nihil. Corporis
-        </p>
 
-        <h3 className="my-5 text-[18px] font-semibold">
-          Step 2: Self-Reflection and Goal Setting
-        </h3>
-        <p className="my-3">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id sed
-          aperiam, alias aliquam pariatur aliquid amet veniam eius deleniti
-          tenetur aut saepe expedita optio architecto repellat dignissimos
-          nihil. Corporis, repellat?
-        </p>
-        <p className="my-3">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id sed
-          aperiam, alias aliquam pariatur aliquid amet veniam eius deleniti
-          tenetur aut saepe expedita optio architecto repellat dignissimos
-          nihil. Corporis, repellat? Id sed aperiam, alias aliquam pariatur
-          aliquid amet veniam eius deleniti tenetur.
-        </p>
+        <div
+          className="blog-content my-8"
+          dangerouslySetInnerHTML={{ __html: data.description }}
+        ></div>
 
-        <h3 className="my-5 text-[18px] font-semibold">Step 3: Goal Setting</h3>
-        <p className="my-3">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id sed
-          aperiam, alias aliquam pariatur aliquid amet veniam eius deleniti
-          tenetur aut saepe expedita optio architecto repellat dignissimos
-          nihil. Corporis, repellat?
-        </p>
-        <p className="my-3">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id sed
-          aperiam, alias aliquam niti tenetur aut saepe expedita optio
-          architecto repellat dignissimos nihil. Corporis
-        </p>
-
-        <h3 className="my-5 text-[18px] font-semibold">Conclusion</h3>
-        <p className="my-3">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id sed
-          aperiam, alias aliquam pariatur aliquid amet veniam eius deleniti
-          tenetur aut saepe expedita optio architecto repellat dignissimos
-          nihil. Corporis, repellat? <br />
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id sed
-          aperiam, alias aliquam niti tenetur aut saepe expedita optio
-          architecto repellat dignissimos nihil. Corporis
-        </p>
+        {/* <p className="my-8">{data.description}</p> */}
 
         <div className="my-14">
           <p className="text-black font-semibold my-4">
